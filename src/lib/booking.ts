@@ -4,9 +4,9 @@
  * real automation webhook by setting VITE_BOOKING_WEBHOOK_URL (N8N_WEBHOOK_URL).
  */
 
-export const N8N_WEBHOOK_URL: string = import.meta.env.VITE_BOOKING_WEBHOOK_URL ?? "";
-export const N8N_SLOTS_URL: string = import.meta.env.VITE_BOOKING_SLOTS_URL ?? "";
-export const N8N_STATUS_URL: string = import.meta.env.VITE_BOOKING_STATUS_URL ?? "";
+export const N8N_WEBHOOK_URL: string = import.meta.env["VITE_BOOKING_WEBHOOK_URL"] ?? "";
+export const N8N_SLOTS_URL: string = import.meta.env["VITE_BOOKING_SLOTS_URL"] ?? "";
+export const N8N_STATUS_URL: string = import.meta.env["VITE_BOOKING_STATUS_URL"] ?? "";
 
 export const SERVICES = [
   { id: "consultation", name: "Dental Consultation", description: "Complete oral assessment and personalized dental care recommendations." },
@@ -87,7 +87,7 @@ export function isBookingComplete(b: BookingPayload) {
 /* ---------- formatting ---------- */
 
 export function formatTime(t: string) {
-  const [h, m] = t.split(":").map(Number);
+  const [h = 0, m = 0] = t.split(":").map(Number);
   const suffix = h >= 12 ? "PM" : "AM";
   const hr = h % 12 === 0 ? 12 : h % 12;
   return `${hr}:${String(m).padStart(2, "0")} ${suffix}`;
@@ -99,7 +99,7 @@ export function toISODate(d: Date) {
 
 export function formatDate(iso: string) {
   if (!iso) return "";
-  const [y, m, d] = iso.split("-").map(Number);
+  const [y = 0, m = 1, d = 1] = iso.split("-").map(Number);
   return new Date(y, m - 1, d).toLocaleDateString("en-US", {
     weekday: "long",
     month: "long",
@@ -120,7 +120,7 @@ function hash(s: string) {
 
 /** Saturday hours end at 2 PM. */
 export function slotsForDate(isoDate: string) {
-  const [y, m, d] = isoDate.split("-").map(Number);
+  const [y = 0, m = 1, d = 1] = isoDate.split("-").map(Number);
   const day = new Date(y, m - 1, d).getDay();
   return day === 6 ? availableSlots.filter((s) => s < "14:00") : availableSlots;
 }
@@ -188,11 +188,11 @@ export async function checkAppointmentStatus(email: string, reference: string): 
   if (date.getDay() === 0) date.setDate(date.getDate() + 1);
   return {
     reference: reference.toUpperCase(),
-    fullName: email.split("@")[0].replace(/[._]/g, " "),
-    service: SERVICES[h % SERVICES.length].name,
-    dentist: DENTIST_NAMES[h % DENTIST_NAMES.length],
+    fullName: (email.split("@")[0] ?? "").replace(/[._]/g, " "),
+    service: SERVICES[h % SERVICES.length]!.name,
+    dentist: DENTIST_NAMES[h % DENTIST_NAMES.length]!,
     appointmentDate: toISODate(date),
-    appointmentTime: availableSlots[h % 6],
-    status: MOCK_STATUSES[h % MOCK_STATUSES.length],
+    appointmentTime: availableSlots[h % 6]!,
+    status: MOCK_STATUSES[h % MOCK_STATUSES.length]!,
   };
 }

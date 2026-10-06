@@ -218,7 +218,7 @@ function Stepper({ step, onJump }: { step: number; onJump: (i: number) => void }
   );
 }
 
-function Field({ id, label, error, children, className }: { id: string; label: string; error?: string; children: React.ReactNode; className?: string }) {
+function Field({ id, label, error, children, className }: { id: string; label: string; error?: string | undefined; children: React.ReactNode; className?: string }) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <Label htmlFor={id} className="text-sm font-semibold text-foreground">{label}</Label>

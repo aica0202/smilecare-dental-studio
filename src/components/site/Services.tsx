@@ -13,7 +13,7 @@ export function Services() {
         <SectionHeading eyebrow="Services" title="Our Dental Services" subtitle="Gentle, thorough care for every stage of your smile." />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map((s, i) => {
-            const Icon = ICONS[i];
+            const Icon = ICONS[i] ?? Stethoscope;
             return (
               <Reveal key={s.id} delay={(i % 4) * 70}>
                 <article className="card-hover group flex h-full flex-col rounded-3xl border border-border bg-card p-6 shadow-soft">
