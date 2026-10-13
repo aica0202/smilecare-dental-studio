@@ -1,4 +1,4 @@
-# SmileCare Dental Studio
+[# SmileCare Dental Studio
 ### Dental Appointment Booking & Workflow Automation System
 
 **SmileCare Dental Studio** is a responsive dental clinic website featuring an online appointment scheduling interface and an architecture designed for workflow automation using n8n.
@@ -664,3 +664,4 @@ The dental clinic website is publicly accessible and includes a multi-step appoi
 The backend automation functionality, including n8n webhook processing, calendar synchronization, email confirmations, and scheduled reminders, requires verification before being documented as operational.
 
 Further development focuses on strengthening the integration between appointment submissions, automated workflow processing, and clinic administration.
+](https://smilecare-dental-studio-tau.vercel.app/)
