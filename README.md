@@ -7,7 +7,7 @@ The platform enables patients to explore dental services, view available dentist
 
 The project focuses on improving appointment scheduling, patient communication, and administrative efficiency through web application development and workflow automation.
 
-**Live Website:** https://screenshot-perfect-pixel-7965.lovable.app/
+**Live Website:** (https://smilecare-dental-studio-tau.vercel.app/)
 
 **Project Type:** Dental Appointment Booking and Workflow Automation
 
